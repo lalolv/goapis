@@ -159,7 +159,7 @@ func (db *DAO) FindByGroup(dbName, collName string, match, group, sort bson.M, s
 	defer s.Close()
 	c := s.DB(dbName).C(collName)
 	// pip
-	pipes := []bson.M{
+	pipes := []interface{}{
 		bson.M{"$match": match},
 		bson.M{"$group": group},
 	}
