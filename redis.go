@@ -19,8 +19,6 @@ func RedisDo(redisPool *redis.Pool, dbIdx int, cmd string, args ...interface{}) 
 	}
 	// redis 连接
 	cli := redisPool.Get()
-	// 用完后将连接放回连接池
-	defer cli.Close()
 	//选定数据库索引
 	cli.Do("SELECT", dbIdx)
 	// 执行命令
@@ -39,8 +37,6 @@ func RedisDo(redisPool *redis.Pool, dbIdx int, cmd string, args ...interface{}) 
 func RedisDos(redisPool *redis.Pool, dbIdx int, cmds [][]interface{}) []interface{} {
 	// redis 连接
 	cli := redisPool.Get()
-	// 用完后将连接放回连接池
-	defer cli.Close()
 	//选择数据库
 	cli.Do("SELECT", dbIdx)
 	//执行命令
