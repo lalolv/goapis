@@ -3,7 +3,6 @@ module github.com/lalolv/goapis
 go 1.15
 
 require (
-	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/lalolv/goutil v0.0.0-20200708031027-e52e9477aa4c
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/nsqio/go-nsq v1.0.8
