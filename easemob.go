@@ -136,7 +136,7 @@ func (p *Easemob) EasemobNickModify(uid int64, nickName string) bool {
 }
 
 // PushMessage 发送消息
-func (p *Easemob) PushMessage(msg string, target map[string]string) (interface{}, error) {
+func (p *Easemob) PushMessage(reqURL, msg string, target map[string]string) (interface{}, error) {
 	// body params
 	params := bson.M{
 		"target_type": "users",
@@ -154,10 +154,7 @@ func (p *Easemob) PushMessage(msg string, target map[string]string) (interface{}
 		return nil, errors.New("生成token失败")
 	}
 
-	data := p.doRequest(
-		params,
-		fmt.Sprintf("https://a1.easemob.com/fashionmii/fashionmii/messages"),
-		aToken["access_token"].(string), "POST")
+	data := p.doRequest(params, reqURL, aToken["access_token"].(string), "POST")
 
 	return data, nil
 }

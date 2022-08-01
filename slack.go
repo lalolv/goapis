@@ -26,6 +26,9 @@ func (slack *SlackUtil) PostMessage(channelID, text string) error {
 	})
 	body := bytes.NewBuffer(buf)
 	req, err := http.NewRequest("POST", url, body)
+	if err != nil {
+		return err
+	}
 	// 头部认证
 	auth := fmt.Sprintf("Bearer %s", slack.Token)
 	// Header
@@ -49,7 +52,7 @@ func (slack *SlackUtil) PostMessage(channelID, text string) error {
 			return errors.New(resp.Status)
 		}
 	} else {
-		return errors.New("Req error")
+		return errors.New("req err")
 	}
 
 	return nil
